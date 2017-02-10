@@ -7,6 +7,7 @@ namespace BookInfo.Models
 {
     public class Book
     {
+        public int BookId { get; set; }
         private List<Author> authors = new List<Author>();
         public string Title { get; set; }
         public List<Author> Authors { get { return authors; } }
