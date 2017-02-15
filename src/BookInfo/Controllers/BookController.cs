@@ -22,7 +22,7 @@ namespace BookInfo.Controllers
         // GET: /<controller>/
         public ViewResult Index()
         {
-            return View(bookRepo.GetAllBooks());
+            return View(bookRepo.GetAllBooks().ToList());
         }
 
         public ViewResult AuthorsOfBook(Book book)
