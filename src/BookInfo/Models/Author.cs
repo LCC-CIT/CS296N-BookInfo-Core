@@ -17,5 +17,10 @@ namespace BookInfo.Models
             else
                 return Name == authorObj.Name && Birthday == authorObj.Birthday;
         }
+
+        public override int GetHashCode()
+        {
+            return AuthorID;
+        }
     }
 }

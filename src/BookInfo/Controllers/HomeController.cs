@@ -26,8 +26,7 @@ namespace BookInfo.Controllers
 
         public ViewResult Authors()
         {
-            var repo = new AuthorRepository();
-            var authors = repo.GetAllAuthors();
+            var authors = authorRepo.GetAllAuthors().ToList();
             return View(authors);
         }
     }
