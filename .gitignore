@@ -20,10 +20,12 @@
 *.ilk
 *.log
 *.lib
+*.lock.json
 *.sbr
 *.sdf
 *.opensdf
 *.unsuccessfulbuild
+*.vs
 ipch/
 obj/
 [Bb]in
@@ -109,3 +111,6 @@ $RECYCLE.BIN/
 Network Trash Folder
 Temporary Items
 .apdisk
+*.dg
+.vs/restore.dg
+*.dg
