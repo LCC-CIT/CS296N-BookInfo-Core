@@ -5,6 +5,7 @@ namespace BookInfo.Models
 {
     public class Author
     {
+        public int AuthorID { get; set; }
         public string Name { get; set; }
         public DateTime Birthday { get; set; }
 
@@ -15,6 +16,11 @@ namespace BookInfo.Models
                 return false;
             else
                 return Name == authorObj.Name && Birthday == authorObj.Birthday;
+        }
+
+        public override int GetHashCode()
+        {
+            return AuthorID;
         }
     }
 }

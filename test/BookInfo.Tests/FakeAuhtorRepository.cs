@@ -1,6 +1,7 @@
 ﻿using BookInfo.Models;
 using BookInfo.Repositories;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +10,7 @@ namespace BookInfo.Tests
 {
     public class FakeAuhtorRepository : IAuthorRepository
     {
-        public List<Author> GetAllAuthors()
+        public IEnumerable<Author> GetAllAuthors()
         {
             var authors = new List<Author>();
             authors.Add(new Author() { Name = "Jame Austen", Birthday = new DateTime(1775, 12, 16) }); 

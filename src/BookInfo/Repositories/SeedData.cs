@@ -8,12 +8,11 @@ using System.Threading.Tasks;
 
 namespace BookInfo.Repositories
 {
-    public static class SeedData
+    public class SeedData
     {
         public static void EnsurePopulated(IApplicationBuilder app)
         {
-            ApplicationDbContext context = app.ApplicationServices.
-                GetRequiredService<ApplicationDbContext>();
+            ApplicationDbContext context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
 
             if (!context.Books.Any())
             {
@@ -30,8 +29,9 @@ namespace BookInfo.Repositories
                 context.Books.Add(book);
 
                 author = new Author { Name = "Samuel Shellabarger" };
-                context.Authors.Add(author);
                 book = new Book { Title = "Prince of Foxes", Date = DateTime.Parse("1/1/1947") };
+                context.Authors.Add(author);
+                book.Authors.Add(author);
                 book.Authors.Add(author);
                 context.Books.Add(book);
 
