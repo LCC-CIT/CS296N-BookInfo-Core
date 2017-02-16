@@ -48,3 +48,5 @@ Temporary Items
 *.suo
 .vs/restore.dg
 *.dg
+.vs/restore.dg
+*.user
