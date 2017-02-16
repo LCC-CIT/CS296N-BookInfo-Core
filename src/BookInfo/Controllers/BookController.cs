@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BookInfo.Repositories;
@@ -23,6 +24,12 @@ namespace BookInfo.Controllers
         public ViewResult Index()
         {
             return View(bookRepo.GetAllBooks().ToList());
+        }
+
+        public ViewResult BooksByGenre(string genre)
+        {
+            return View("Index", bookRepo.GetAllBooks().
+                Where(b => b.Genre == genre).ToList());
         }
 
         public ViewResult AuthorsOfBook(Book book)

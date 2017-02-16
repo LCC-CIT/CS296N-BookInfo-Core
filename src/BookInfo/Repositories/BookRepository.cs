@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BookInfo.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace BookInfo.Repositories
 {
@@ -15,7 +16,7 @@ namespace BookInfo.Repositories
 
         public IEnumerable<Book> GetAllBooks()
         {
-            return context.Books;
+            return context.Books.Include(b => b.Authors);
         }
 
         public Book GetBookByTitle(string title)

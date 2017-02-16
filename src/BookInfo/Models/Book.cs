@@ -12,5 +12,6 @@ namespace BookInfo.Models
         public string Title { get; set; }
         public List<Author> Authors { get { return authors; } }
         public DateTime Date { get; set; }
+        public string Genre { get; set; }
     }
 }

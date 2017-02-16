@@ -1,0 +1,18 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Book List</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Show all books", "Index", "Book")<br />
+        @Html.ActionLink("Show Fantasy books", "BooksByGenre", "Book",
+    new { genre = "Fantasy" })<br />
+        @Html.ActionLink("Show Historical Fiction books", "BooksByGenre", "Book",
+    new { genre = "Historical Fiction" })<br />
+        @Html.ActionLink("Show all authors", "Authors", "Home") @*Later, this should be in an AuthorController *@
+    </p>
+    @RenderBody()
+</body>
+</html>
