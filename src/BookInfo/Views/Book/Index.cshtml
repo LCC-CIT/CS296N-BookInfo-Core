@@ -1,14 +1,16 @@
 ﻿@model List<BookInfo.Models.Book>
-@{ Layout = "_Layout"; }
+@{
+    ViewBag.Title = "Book List";
+}
 
-    <h1>List of Books</h1>
-    @foreach (var b in Model)
+<h2>List of @ViewBag.Genre Books</h2>
+@foreach (var b in Model)
+{
+    @:Title: @b.Title <br />
+    @:Published: @b.Date.ToString("yyyy") <br />
+    foreach (var a in b.Authors)
     {
-        @:Title: @b.Title <br />
-        @:Published: @b.Date.ToString("yyyy") <br />
-        foreach (var a in b.Authors)
-        {
-            @:Author: @a.Name <br />
-        }
-        @:Genre: @b.Genre <br /><br />
+        @:Author: @a.Name <br />
     }
+    @:Genre: @b.Genre <br /><br />
+}

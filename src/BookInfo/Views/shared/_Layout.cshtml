@@ -1,11 +1,12 @@
 ﻿<!DOCTYPE html>
-
 <html>
 <head>
-    <title>Book List</title>
+    <title>Book Info: @ViewBag.Title</title>
 </head>
 <body>
+    <h1>Book Info: @ViewBag.Title</h1>
     <p>
+        @Html.ActionLink("Home", "Index", "Home") <br />
         @Html.ActionLink("Show all books", "Index", "Book")<br />
         @Html.ActionLink("Show Fantasy books", "BooksByGenre", "Book",
     new { genre = "Fantasy" })<br />
