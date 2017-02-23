@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+// TODO Add Review seed data
+
 namespace BookInfo.Repositories
 {
     public class SeedData
@@ -32,13 +34,21 @@ namespace BookInfo.Repositories
                 book = new Book { Title = "Prince of Foxes", Date = DateTime.Parse("1/1/1947"), Genre = "Historical Fiction" };
                 context.Authors.Add(author);
                 book.Authors.Add(author);
+                book.BookReviews.Add(new Review { Body = "Amazing characters!", Rating = 5 });
                 context.Books.Add(book);
 
                 author = new Author { Name = "Wilbur Smith" };
                 book = new Book { Title = "River God", Date = DateTime.Parse("1/1/1975"), Genre = "Historical Fiction" };
                 context.Authors.Add(author);
                 book.Authors.Add(author);
+                book.BookReviews.Add(new Models.Review
+                {
+                    Body = "Wow, really great book!",
+                    Rating = 5
+                });
                 context.Books.Add(book);
+
+
 
                 context.SaveChanges();
             }

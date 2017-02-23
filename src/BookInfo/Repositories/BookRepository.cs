@@ -16,7 +16,8 @@ namespace BookInfo.Repositories
 
         public IEnumerable<Book> GetAllBooks()
         {
-            return context.Books.Include(b => b.Authors);
+            return context.Books.Include(b => b.Authors).
+                Include(b => b.BookReviews);
         }
 
         public Book GetBookByTitle(string title)

@@ -26,7 +26,8 @@
     "Microsoft.NETCore.App": {
       "type": "platform",
       "version": "1.0.1"
-    }
+    },
+    "Microsoft.EntityFrameworkCore": "1.1.0"
   },
   "frameworks": {
     "netcoreapp1.0": {
