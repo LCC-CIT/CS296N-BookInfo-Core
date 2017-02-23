@@ -22,5 +22,8 @@
         @r.Rating <br/>
         @r.Body <br />
     }
-    <br /><br />
+    <br />
+@Html.ActionLink("Add a review", "ReviewForm", "Review", 
+    new { Title = b.Title, Id=b.BookId})
+    <br /> <br />
 }

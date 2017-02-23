@@ -1,0 +1,12 @@
+﻿@model BookInfo.Models.Review
+@{
+    ViewBag.Title = "Review";
+}
+<h1>Enter a Book Review</h1>
+Title: @ViewBag.BookTitle
+
+<form asp-controller="Review" asp-action="ReviewForm" method="post">
+    <input asp-for="Body" />
+    <input asp-for="Rating" />
+    <button type="submit">Post</button>
+</form>

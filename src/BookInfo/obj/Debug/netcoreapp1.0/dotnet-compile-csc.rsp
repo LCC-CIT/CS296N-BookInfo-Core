@@ -203,6 +203,7 @@
 "C:\Users\Student.CIT130PRIS\GitRepos\CS296N-BookInfo-Core\src\BookInfo\Startup.cs"
 "C:\Users\Student.CIT130PRIS\GitRepos\CS296N-BookInfo-Core\src\BookInfo\Controllers\BookController.cs"
 "C:\Users\Student.CIT130PRIS\GitRepos\CS296N-BookInfo-Core\src\BookInfo\Controllers\HomeController.cs"
+"C:\Users\Student.CIT130PRIS\GitRepos\CS296N-BookInfo-Core\src\BookInfo\Controllers\ReviewController.cs"
 "C:\Users\Student.CIT130PRIS\GitRepos\CS296N-BookInfo-Core\src\BookInfo\Migrations\20170210011127_Initial.cs"
 "C:\Users\Student.CIT130PRIS\GitRepos\CS296N-BookInfo-Core\src\BookInfo\Migrations\20170210011127_Initial.Designer.cs"
 "C:\Users\Student.CIT130PRIS\GitRepos\CS296N-BookInfo-Core\src\BookInfo\Migrations\20170216183547_Genre.cs"
