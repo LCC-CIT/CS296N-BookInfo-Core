@@ -4,7 +4,7 @@ using BookInfo.Repositories;
 using BookInfo.Models;
 
 // For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-// TODO Add a Review controller\
+// TODO Add a Review controller
 
 namespace BookInfo.Controllers
 {

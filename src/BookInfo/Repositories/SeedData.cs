@@ -6,8 +6,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-// TODO Add Review seed data
-
 namespace BookInfo.Repositories
 {
     public class SeedData
