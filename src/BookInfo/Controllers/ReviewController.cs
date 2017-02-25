@@ -32,14 +32,17 @@ namespace BookInfo.Controllers
         }
 
         [HttpPost]
-        public IActionResult ReviewForm(ReviewViewModel reviewVm)
+        public IActionResult ReviewForm(int id, int rating, string body)
         {
-            // Get the book object from the database
+            // Get the full model object for the book being reviewed
             Book book = (from b in bookRepo.GetAllBooks()
-                         where b.BookId == reviewVm.BookId
+                         where b.BookId == id
                          select b).FirstOrDefault<Book>();
-            book.BookReviews.Add(reviewVm.BookReview);
+
+            // add the review and save the book object to the db
+            book.BookReviews.Add(new Review { Rating = rating, Body = body });
             bookRepo.Update(book);
+
             return RedirectToAction("Index", "Book");
         }
        
