@@ -26,9 +26,9 @@ namespace BookInfo.Tests
             books.Add(book);
         }
 
-        public IEnumerable<Book> GetAllBooks()
+        public IQueryable<Book> GetAllBooks()
         {
-            return books;
+            return books.AsQueryable();
         }
 
         public Book GetBookByTitle(string title)
@@ -46,6 +46,11 @@ namespace BookInfo.Tests
         public List<Author> GetAuthorsByBook(Book book)
         {
             return book.Authors;
+        }
+
+        public int Update(Book book)
+        {
+            throw new NotImplementedException();
         }
     }
 }
