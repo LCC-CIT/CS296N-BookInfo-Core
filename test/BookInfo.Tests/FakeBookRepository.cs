@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BookInfo.Models;
 
 namespace BookInfo.Tests
@@ -46,6 +45,11 @@ namespace BookInfo.Tests
         public List<Author> GetAuthorsByBook(Book book)
         {
             return book.Authors;
+        }
+
+        IQueryable<Book> IBookRepository.GetAllBooks()
+        {
+            throw new NotImplementedException();
         }
 
         public int Update(Book book)

@@ -20,11 +20,15 @@ namespace BookInfo.Controllers
         [HttpGet]
         public ViewResult ReviewForm(string title, int id)
         {
-            ViewBag.BookTitle = title;
-            ViewBag.Id = id;
-            // TODO Create a view model
+            var reviewVm = new ReviewViewModel();
+            reviewVm.BookId = id;
+            reviewVm.Title = title;
+            reviewVm.BookReview = new Models.Review();
+            // For testing
+            //reviewVm.BookReview.Body = "Testing the body";
+            //reviewVm.BookReview.Rating = 5;
 
-            return View(new Review());
+            return View(reviewVm);
         }
 
         [HttpPost]
@@ -41,6 +45,6 @@ namespace BookInfo.Controllers
 
             return RedirectToAction("Index", "Book");
         }
-
+       
     }
 }

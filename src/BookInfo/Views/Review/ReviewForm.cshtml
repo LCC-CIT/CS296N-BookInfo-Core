@@ -1,13 +1,20 @@
-﻿@* @model BookInfo.Models.Review*@
+﻿﻿@model BookInfo.Models.ReviewViewModel
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
 @{
     ViewBag.Title = "Review";
 }
 <h1>Enter a Book Review</h1>
-Title: @ViewBag.BookTitle
+Title: @Model.Title
 
-<form method="post">
-    <input type="hidden" name="id" value=@ViewBag.Id />
-    <input name="Body" />
-    <input name="Rating" />
+<form asp-controller="Review" asp-action="ReviewForm" method="post">
+    <input asp-for="BookId" type="hidden" />
+
+    <label asp-for="BookReview.Body"></label>
+    <input asp-for="BookReview.Body" />
+
+    <label asp-for="BookReview.Rating"></label>
+    <input asp-for="BookReview.Rating" />
+
     <button type="submit">Post</button>
 </form>
