@@ -14,7 +14,7 @@ namespace BookInfo.Repositories
             context = ctx;
         }
 
-        public IEnumerable<Book> GetAllBooks()
+        public IQueryable<Book> GetAllBooks()
         {
             return context.Books.Include(b => b.Authors).
                 Include(b => b.BookReviews);
@@ -35,6 +35,12 @@ namespace BookInfo.Repositories
         public List<Author> GetAuthorsByBook(Book book)
         {
             return book.Authors;
+        }
+
+        public int Update(Book book)
+        {
+            context.Books.Update(book);
+            return context.SaveChanges();
         }
     }
 }

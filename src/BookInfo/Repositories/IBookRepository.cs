@@ -8,9 +8,10 @@ namespace BookInfo.Repositories
 {
     public interface IBookRepository
     {
-        IEnumerable<Book> GetAllBooks();
+        IQueryable<Book> GetAllBooks();
         Book GetBookByTitle(string title);
         List<Book> GetBooksByAuthor(Author author);
         List<Author> GetAuthorsByBook(Book book);
+        int Update(Book book);
     }
 }

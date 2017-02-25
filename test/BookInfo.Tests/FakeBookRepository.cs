@@ -47,5 +47,15 @@ namespace BookInfo.Tests
         {
             return book.Authors;
         }
+
+        IQueryable<Book> IBookRepository.GetAllBooks()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update(Book book)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
