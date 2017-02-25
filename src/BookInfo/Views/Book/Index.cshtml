@@ -1,4 +1,5 @@
 ﻿@model List<BookInfo.Models.Book>
+<!-- Add a Review input view-->
 @{
     ViewBag.Title = "Book List";
 }
@@ -8,9 +9,21 @@
 {
     @:Title: @b.Title <br />
     @:Published: @b.Date.ToString("yyyy") <br />
+    @:Genre: @b.Genre <br />
     foreach (var a in b.Authors)
     {
         @:Author: @a.Name <br />
     }
-    @:Genre: @b.Genre <br /><br />
+    <br />
+    <h3>Reviews</h3>
+    <!--TODO Change to a for loop to improve performance-->
+    foreach (var r in b.BookReviews)
+    {
+        @r.Rating <br/>
+        @r.Body <br />
+    }
+    <br />
+@Html.ActionLink("Add a review", "ReviewForm", "Review", 
+    new { Title = b.Title, Id=b.BookId})
+    <br /> <br />
 }

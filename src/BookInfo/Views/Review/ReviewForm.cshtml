@@ -1,0 +1,13 @@
+﻿@* @model BookInfo.Models.Review*@
+@{
+    ViewBag.Title = "Review";
+}
+<h1>Enter a Book Review</h1>
+Title: @ViewBag.BookTitle
+
+<form method="post">
+    <input type="hidden" name="id" value=@ViewBag.Id />
+    <input name="Body" />
+    <input name="Rating" />
+    <button type="submit">Post</button>
+</form>

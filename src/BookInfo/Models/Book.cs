@@ -13,5 +13,7 @@ namespace BookInfo.Models
         public List<Author> Authors { get { return authors; } }
         public DateTime Date { get; set; }
         public string Genre { get; set; }
+        private List<Review> reviews = new List<Review>();
+        public List<Review> BookReviews { get { return reviews; } }
     }
 }
