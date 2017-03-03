@@ -41,7 +41,9 @@
     "include": [
       "wwwroot",
       "web.config",
-      "**/*.cshtml"
+      "**/*.cshtml",
+      "appsettings.json",
+      "appsettings.production.json"
     ]
   },
   "runtimeOptions": {

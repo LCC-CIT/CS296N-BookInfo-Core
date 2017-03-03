@@ -10,8 +10,8 @@
         "dependencies": {
           "xunit": "2.1.0",
           "dotnet-test-xunit": "2.2.0-preview2-build1029",
-          "BookInfo": "1.0.0",
-          "System.Linq": "4.3.0"
+          "System.Linq": "4.3.0",
+          "BookInfo.Web": "1.0.0"
         },
         "runtime": {
           "BookInfo.Tests.dll": {}
@@ -2663,7 +2663,7 @@
           "lib/netstandard1.1/xunit.runner.utility.dotnet.dll": {}
         }
       },
-      "BookInfo/1.0.0": {
+      "BookInfo.Web/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
@@ -2679,7 +2679,7 @@
           "Microsoft.EntityFrameworkCore": "1.1.0"
         },
         "runtime": {
-          "BookInfo.dll": {}
+          "BookInfo.Web.dll": {}
         }
       }
     }
@@ -3695,7 +3695,7 @@
       "serviceable": true,
       "sha512": "sha512-lotqjLPg8NnjZHlRpj0Yj5TI3z/7hzK7+tb6R7qRAREDoH9P88EDCWJyy2xJh/R6PfbS9KYTaT/Z2ob9gx6PgQ=="
     },
-    "BookInfo/1.0.0": {
+    "BookInfo.Web/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

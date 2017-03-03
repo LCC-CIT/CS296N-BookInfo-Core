@@ -20,7 +20,9 @@ namespace BookInfo
         {
             Configuration = new ConfigurationBuilder()
             .SetBasePath(env.ContentRootPath)
-            .AddJsonFile("appsettings.json").Build();
+            .AddJsonFile("appsettings.json")
+           // .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
+            .Build();
         }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -28,7 +30,7 @@ namespace BookInfo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
-                                Configuration["Data:BookInfo:ConnectionString"]));
+                                Configuration["Data:BookInfoDb:ConnectionString"]));
             services.AddMvc();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
             services.AddTransient<IBookRepository, BookRepository>();
