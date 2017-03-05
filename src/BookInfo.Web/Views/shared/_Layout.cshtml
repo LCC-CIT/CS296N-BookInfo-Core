@@ -3,14 +3,18 @@
 <head>
     <title>Book Info: @ViewBag.Title</title>
     <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css" />
+    <script asp-src-include="lib/jquery/**/jquery.min.js"></script>
+    <script asp-src-include="lib/jquery-validation/**/jquery.validate.min.js"></script>
+    <script asp-src-include="lib/jquery-validation-unobtrusive/**/*.min.js"></script>
 </head>
 <body>
     <h1>Book Info: @ViewBag.Title</h1>
     <p>
-        <a  asp-controller="Home" asp-action="Index">Home</a><br />
+        <a asp-controller="Home" asp-action="Index">Home</a><br />
         <a asp-controller="Book" asp-action="Index">Show all books</a><br />
-        @Html.ActionLink("Show Fantasy books", "BooksByGenre", "Book",
-            new { genre = "Fantasy" })<br />
+        @*<a asp-controller="Book" asp-action="BooksByGenre", asp-all-route-data="@new{genre="Fantasy"}">Show fantasy books</a>*@
+        @Html.ActionLink("Show fantasy books", "BooksByGenre", "Book",
+            new { genre = "Fantasy"})<br />
         @Html.ActionLink("Show Historical Fiction books", "BooksByGenre", "Book",
             new { genre = "Historical Fiction" })<br />
         @Html.ActionLink("Show all authors", "Authors", "Home") @*Later, this should be in an AuthorController *@
