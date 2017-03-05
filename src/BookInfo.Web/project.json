@@ -42,7 +42,7 @@
       "wwwroot",
       "web.config",
       "**/*.cshtml",
-      "appsettings.json",
+      //"appsettings.json"
       "appsettings.production.json"
     ]
   },

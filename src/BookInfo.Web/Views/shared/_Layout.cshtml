@@ -2,16 +2,17 @@
 <html>
 <head>
     <title>Book Info: @ViewBag.Title</title>
+    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css" />
 </head>
 <body>
     <h1>Book Info: @ViewBag.Title</h1>
     <p>
-        @Html.ActionLink("Home", "Index", "Home") <br />
-        @Html.ActionLink("Show all books", "Index", "Book")<br />
+        <a  asp-controller="Home" asp-action="Index">Home</a><br />
+        <a asp-controller="Book" asp-action="Index">Show all books</a><br />
         @Html.ActionLink("Show Fantasy books", "BooksByGenre", "Book",
-    new { genre = "Fantasy" })<br />
+            new { genre = "Fantasy" })<br />
         @Html.ActionLink("Show Historical Fiction books", "BooksByGenre", "Book",
-    new { genre = "Historical Fiction" })<br />
+            new { genre = "Historical Fiction" })<br />
         @Html.ActionLink("Show all authors", "Authors", "Home") @*Later, this should be in an AuthorController *@
     </p>
     @RenderBody()

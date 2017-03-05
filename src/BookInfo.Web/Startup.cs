@@ -15,7 +15,7 @@ namespace BookInfo
         {
             Configuration = new ConfigurationBuilder()
             .SetBasePath(env.ContentRootPath)
-//            .AddJsonFile("appsettings.json")
+            //.AddJsonFile("appsettings.json")
             .AddJsonFile($"appsettings.{env.EnvironmentName}.json", true)
             .Build();
         }

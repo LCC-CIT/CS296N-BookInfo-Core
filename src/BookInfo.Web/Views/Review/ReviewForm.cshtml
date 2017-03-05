@@ -1,20 +1,28 @@
-﻿﻿@model BookInfo.Models.ReviewViewModel
-@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+﻿﻿@model ReviewViewModel
 
 @{
     ViewBag.Title = "Review";
 }
 <h1>Enter a Book Review</h1>
 Title: @Model.Title
+@Html.ValidationSummary(true);
 
 <form asp-controller="Review" asp-action="ReviewForm" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
     <input asp-for="BookId" type="hidden" />
+    <input asp-for="Title" type="hidden" />
 
-    <label asp-for="BookReview.Body"></label>
-    <input asp-for="BookReview.Body" />
+    <p>
+        <label asp-for="BookReview.Body"></label>
+        <span asp-validation-for="BookReview.Body"></span>
+        <input asp-for="BookReview.Body" />
+    </p>
 
-    <label asp-for="BookReview.Rating"></label>
-    <input asp-for="BookReview.Rating" />
+    <p>
+        <label asp-for="BookReview.Rating"></label>
+        <span asp-validation-for="BookReview.Rating"></span>
+        <input asp-for="BookReview.Rating" />
+    </p>
 
     <button type="submit">Post</button>
 </form>
