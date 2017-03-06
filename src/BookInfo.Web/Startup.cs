@@ -40,7 +40,12 @@ namespace BookInfo
             {
                 app.UseDeveloperExceptionPage();
             }
+
             app.UseMvcWithDefaultRoute();
+            app.UseStatusCodePages();
+            app.UseDeveloperExceptionPage();
+            app.UseStaticFiles();
+
             SeedData.EnsurePopulated(app);
         }
     }

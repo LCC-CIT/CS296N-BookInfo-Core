@@ -2,13 +2,15 @@
 <html>
 <head>
     <title>Book Info: @ViewBag.Title</title>
-    <link rel="stylesheet" asp-href-include="lib/bootstrap/dist/css/*.min.css" />
-    <script asp-src-include="lib/jquery/**/jquery.min.js"></script>
-    <script asp-src-include="lib/jquery-validation/**/jquery.validate.min.js"></script>
-    <script asp-src-include="lib/jquery-validation-unobtrusive/**/*.min.js"></script>
+ 
+    <link asp-href-include="lib/bootstrap/dist/**/*.min.css" rel="stylesheet" />
+    <script asp-src-include="lib/jquery/dist/*.min.js"></script>
+    <script asp-src-include="jquery-validation/dist/jquery.*.min.js"></script>
+    <script asp-src-include="lib/jquery-validation-unobtrusive/dist/jquery.*.min.js"></script>
 </head>
 <body>
     <h1>Book Info: @ViewBag.Title</h1>
+    <div class="text-danger">testing</div>
     <p>
         <a asp-controller="Home" asp-action="Index">Home</a><br />
         <a asp-controller="Book" asp-action="Index">Show all books</a><br />

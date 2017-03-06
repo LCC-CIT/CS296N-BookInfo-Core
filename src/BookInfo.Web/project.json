@@ -5,7 +5,6 @@
       "type": "platform"
     },
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
-
     "Microsoft.AspNetCore.Server.IISIntegration": "1.0.0",
     "Microsoft.AspNetCore.Server.Kestrel": "1.0.0",
     "Microsoft.Extensions.Logging.Console": "1.0.0",
@@ -34,6 +33,19 @@
   "buildOptions": {
     "emitEntryPoint": true,
     "preserveCompilationContext": true
+  },
+
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "web.config",
+      "**/*.cshtml",
+      "appsettings.production.json"
+    ]
+  },
+
+  "scripts": {
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   },
 
   "runtimeOptions": {
