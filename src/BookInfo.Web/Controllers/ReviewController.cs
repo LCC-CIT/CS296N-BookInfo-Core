@@ -20,7 +20,7 @@ namespace BookInfo.Controllers
             var reviewVm = new ReviewViewModel();
             reviewVm.BookId = id;
             reviewVm.Title = title;
-            reviewVm.BookReview = new Models.Review();
+            //reviewVm.BookReview = new Models.Review();
             // For testing
             //reviewVm.BookReview.Body = "Testing the body";
             //reviewVm.BookReview.Rating = 5;
@@ -32,10 +32,10 @@ namespace BookInfo.Controllers
         [HttpPost]
         public ActionResult ReviewForm(ReviewViewModel reviewVm)
         {
-            if (reviewVm.BookReview.Rating < 1 || reviewVm.BookReview.Rating > 5)
+            if (reviewVm.Rating < 1 || reviewVm.Rating > 5)
             {
-                //string prop = nameof(reviewVm.BookReview.Rating);
-                string prop = "BookReview.Rating";
+                string prop = nameof(reviewVm.Rating);
+                //string prop = "BookReview.Rating";
                 ModelState.AddModelError(prop, "Server says: please enter a number from 1 to 5");
             }
 
@@ -47,7 +47,7 @@ namespace BookInfo.Controllers
                              select b).FirstOrDefault<Book>();
 
                 // add the review and save the book object to the db
-                book.BookReviews.Add(reviewVm.BookReview);
+                book.BookReviews.Add(new Review { Body = reviewVm.ReviewText, Rating = reviewVm.Rating });
                 bookRepo.Update(book);
 
                return RedirectToAction("Index", "Book");
