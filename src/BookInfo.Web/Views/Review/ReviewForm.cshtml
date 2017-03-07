@@ -4,25 +4,35 @@
     ViewBag.Title = "Review";
 }
 <h1>Enter a Book Review</h1>
-Title: @Model.Title
-@Html.ValidationSummary(true);
+Book reviw for: <cite>@Model.Title</cite>
 
 <form asp-controller="Review" asp-action="ReviewForm" method="post">
-    <div asp-validation-summary="All" class="text-danger"></div>
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
     <input asp-for="BookId" type="hidden" />
     <input asp-for="Title" type="hidden" />
-
     <p>
         <label asp-for="BookReview.Body"></label>
-        <span asp-validation-for="BookReview.Body"></span>
         <input asp-for="BookReview.Body" />
+        <span asp-validation-for="BookReview.Body" class="text-danger"></span>
     </p>
 
     <p>
         <label asp-for="BookReview.Rating"></label>
-        <span asp-validation-for="BookReview.Rating"></span>
         <input asp-for="BookReview.Rating" />
+        <span asp-validation-for="BookReview.Rating" class="text-danger"></span>
     </p>
 
     <button type="submit">Post</button>
 </form>
+
+<!--Notes:
+    1) This page uses CSS and JS files that are linked on _Layout.cshtml
+    2) class="text-danger": a CSS class that comes from Bootstrap and just changes the text color to red.
+    3) asp-validation-summary="All": a Tag Helper that provides a summary of validation errors. 
+       The errors can be generated on the server (in the controller method) with the error information being
+       passed to this view in the model.
+    4) asp-validation-for: a Tag Helper that displays validation errors generated in the view. 
+       The errors are based on the validation data annotations on the model.
+       This Tag Helper depends on jquery-validation-unobtrusive
+     -->

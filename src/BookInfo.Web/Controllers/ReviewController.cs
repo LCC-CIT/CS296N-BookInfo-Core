@@ -1,10 +1,7 @@
 ﻿using BookInfo.Models;
 using BookInfo.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookInfo.Controllers
 {
@@ -31,17 +28,15 @@ namespace BookInfo.Controllers
             return View(reviewVm);
         }
 
-        [HttpPost]
-        public IActionResult ReviewForm(ReviewViewModel reviewVm)
-        {
-            if (reviewVm.BookReview.Body == "")
-            {
-                ModelState.AddModelError(nameof(reviewVm.BookReview.Body), "Please some text");
-            }
 
+        [HttpPost]
+        public ActionResult ReviewForm(ReviewViewModel reviewVm)
+        {
             if (reviewVm.BookReview.Rating < 1 || reviewVm.BookReview.Rating > 5)
             {
-                ModelState.AddModelError(nameof(reviewVm.BookReview.Rating), "Please a number from 1 to 5");
+                //string prop = nameof(reviewVm.BookReview.Rating);
+                string prop = "BookReview.Rating";
+                ModelState.AddModelError(prop, "Server says: please enter a number from 1 to 5");
             }
 
             if (ModelState.IsValid)
@@ -55,11 +50,11 @@ namespace BookInfo.Controllers
                 book.BookReviews.Add(reviewVm.BookReview);
                 bookRepo.Update(book);
 
-                return RedirectToAction("Index", "Book");
+               return RedirectToAction("Index", "Book");
             }
             else
             {
-                return RedirectToAction("ReviewForm", new { reviewVm.Title, reviewVm.BookId });
+                return View(reviewVm);
             }
         }
        

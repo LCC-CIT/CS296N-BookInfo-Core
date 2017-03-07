@@ -1,5 +1,5 @@
-﻿@model List<BookInfo.Models.Book>
-<!-- Add a Review input view-->
+﻿@model List<Book>
+<!-- TODO: Add a Review input view-->
 @{
     ViewBag.Title = "Book List";
 }
@@ -14,7 +14,6 @@
     {
         @:Author: @a.Name <br />
     }
-    <br />
     <h3>Reviews</h3>
     <!--TODO Change to a for loop to improve performance-->
     foreach (var r in b.BookReviews)
@@ -22,8 +21,9 @@
         @r.Rating <br/>
         @r.Body <br />
     }
-    <br />
-@Html.ActionLink("Add a review", "ReviewForm", "Review", 
-    new { Title = b.Title, Id=b.BookId})
-    <br /> <br />
+    <p>
+        @Html.ActionLink("Add a review", "ReviewForm", "Review",
+    new { Title = b.Title, Id = b.BookId })
+    </p>
+    <hr />
 }

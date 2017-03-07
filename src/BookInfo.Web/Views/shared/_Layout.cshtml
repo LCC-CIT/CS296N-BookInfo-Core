@@ -7,19 +7,26 @@
     <script asp-src-include="lib/jquery/dist/*.min.js"></script>
     <script asp-src-include="jquery-validation/dist/jquery.*.min.js"></script>
     <script asp-src-include="lib/jquery-validation-unobtrusive/dist/jquery.*.min.js"></script>
+
+    <style>
+        body 
+        {
+            background-color:antiquewhite;
+            padding:5px;
+        }
+    </style>
 </head>
 <body>
     <h1>Book Info: @ViewBag.Title</h1>
-    <div class="text-danger">testing</div>
+    <h3>Menu:</h3>
     <p>
         <a asp-controller="Home" asp-action="Index">Home</a><br />
         <a asp-controller="Book" asp-action="Index">Show all books</a><br />
-        @*<a asp-controller="Book" asp-action="BooksByGenre", asp-all-route-data="@new{genre="Fantasy"}">Show fantasy books</a>*@
-        @Html.ActionLink("Show fantasy books", "BooksByGenre", "Book",
-            new { genre = "Fantasy"})<br />
-        @Html.ActionLink("Show Historical Fiction books", "BooksByGenre", "Book",
-            new { genre = "Historical Fiction" })<br />
-        @Html.ActionLink("Show all authors", "Authors", "Home") @*Later, this should be in an AuthorController *@
+        <a asp-controller="Book" asp-action="BooksByGenre" 
+             asp-route-genre="Fantasy">Show fantasy books</a><br />
+        <a asp-controller="Book" asp-action="BooksByGenre"
+             asp-route-genre="Historical Fiction">Show historical fiction books</a><br />
+        <a asp-controller="Home" asp-action="Authors">Show all authors</a><br />
     </p>
     @RenderBody()
 </body>
