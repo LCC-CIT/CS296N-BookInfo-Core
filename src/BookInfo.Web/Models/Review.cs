@@ -6,12 +6,13 @@ namespace BookInfo.Models
     {
         public int ReviewID { get; set; }
 
-        [Required(ErrorMessage = "Please enter some text")]
+        [Required]
         [MinLength(5, ErrorMessage = "You must enter at least 5 characters")]
         [Display(Name = "Review Text")]
         public string Body { get; set; }
 
-        [Required(ErrorMessage = "Please enter a number")]
+        [Required]
+        [Range(1.0, 5.0, ErrorMessage = "Please enter a number from 1 to 5")]
         [Display(Name = "Book Rating")]
         public int Rating { get; set; }
         // TODO Add a member property
