@@ -32,12 +32,14 @@ namespace BookInfo.Controllers
         [HttpPost]
         public ActionResult ReviewForm(ReviewViewModel reviewVm)
         {
-            if (reviewVm.BookReview.Rating < 1 || reviewVm.BookReview.Rating > 5)
+            
+            if (reviewVm.BookReview.Body.IndexOf(" ", System.StringComparison.Ordinal) < 1)
             {
-                //string prop = nameof(reviewVm.BookReview.Rating);
-                string prop = "BookReview.Rating";
-                ModelState.AddModelError(prop, "Server says: please enter a number from 1 to 5");
+                //string prop = nameof(reviewVm.BookReview.Rating); // Doesn't get the object.property name
+                string prop = "BookReview.Body";
+                ModelState.AddModelError(prop, "Please enter at least two words");
             }
+            
 
             if (ModelState.IsValid)
             {
