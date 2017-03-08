@@ -32,8 +32,8 @@ namespace BookInfo.Controllers
         [HttpPost]
         public ActionResult ReviewForm(ReviewViewModel reviewVm)
         {
-            
-            if (reviewVm.BookReview.Body.IndexOf(" ", System.StringComparison.Ordinal) < 1)
+            string body = reviewVm.BookReview.Body;
+            if (string.IsNullOrEmpty(body) || body.IndexOf(" ", System.StringComparison.Ordinal) < 1)
             {
                 //string prop = nameof(reviewVm.BookReview.Rating); // Doesn't get the object.property name
                 string prop = "BookReview.Body";

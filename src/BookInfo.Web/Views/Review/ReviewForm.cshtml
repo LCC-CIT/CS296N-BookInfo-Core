@@ -7,7 +7,7 @@
 Book reviw for: <cite>@Model.Title</cite>
 
 <form asp-controller="Review" asp-action="ReviewForm" method="post">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div asp-validation-summary="All" class="text-danger"></div>
 
     <input asp-for="BookId" type="hidden" />
     <input asp-for="Title" type="hidden" />
