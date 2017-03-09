@@ -12,13 +12,12 @@ namespace BookInfo.Web.Controllers
         private UserManager<Reader> userManager;
         private SignInManager<Reader> signInManager;
 
-        public AuthController(UserManager<Reader> um, SignInManager<Reader> sim)
+        public AuthController(UserManager<Reader> usrMgr, SignInManager<Reader> sim)
         {
-            userManager = um;
+            userManager = usrMgr;
             signInManager = sim;
         }
-
-        // GET: /<controller>/
+         
         public IActionResult Register()
         {
             return View(new RegisterViewModel());
@@ -31,7 +30,9 @@ namespace BookInfo.Web.Controllers
             {
                 Reader user = new Reader
                 {
-                    UserName = vm.Name,
+                    UserName = vm.FirstName + vm.LastName,
+                    FirstName = vm.FirstName,
+                    LastName = vm.LastName,
                     Email = vm.Email
                 };
                 IdentityResult result = await userManager.CreateAsync(user, vm.Password);
@@ -58,24 +59,25 @@ namespace BookInfo.Web.Controllers
             return View(new LoginViewModel());
         }
 
-
         [HttpPost]
         public async Task<IActionResult> Login(LoginViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                Reader user = await userManager.FindByNameAsync(vm.Name);
+                Reader user = await userManager.FindByNameAsync(vm.UserName);
                 if (user != null)
                 {
                     await signInManager.SignOutAsync();
-                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(
-                    user, vm.Password, false, false);
+                    Microsoft.AspNetCore.Identity.SignInResult result =
+                            await signInManager.PasswordSignInAsync(
+                                user, vm.Password, false, false);
                     if (result.Succeeded)
                     {
                         return RedirectToAction("Index", "Home");
                     }
                 }
-                ModelState.AddModelError(nameof(vm.Name), "Invalid user name or password");
+                ModelState.AddModelError(nameof(LoginViewModel.UserName),
+                    "Invalid user or password");
             }
             return View(vm);
         }

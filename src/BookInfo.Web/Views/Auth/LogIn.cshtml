@@ -3,15 +3,15 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+<h2>Register</h2>
+<div asp-validation-summary="    All " class="text-danger"></div>
 <form asp-action="Login" method="post">
-    <div asp-validation-summary="    All " class="text-danger"></div>
     <p>
-        <label asp-for="Name"></label><br />
-        <input asp-for="Name" />
-        <span asp-validation-for="Name" class="text-danger"></span>
+        <label asp-for="UserName"></label><br />
+        <input asp-for="UserName" />
+        <span asp-validation-for="UserName" class="text-danger"></span>
     </p>
-    <br />
+
     <p>
         <label asp-for="Password"></label><br />
         <input type="password" asp-for="Password" />

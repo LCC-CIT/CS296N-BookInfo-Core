@@ -1,10 +1,14 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-
+using System.ComponentModel.DataAnnotations;
 
 namespace BookInfo.Models
 {
     public class Reader: IdentityUser
     {
-        // We'll just use all the inherited properties for now
+        [Required]
+       public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
     }
 }
