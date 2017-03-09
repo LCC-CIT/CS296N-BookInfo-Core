@@ -10,14 +10,14 @@ namespace BookInfo.Web.Controllers
     public class AuthController : Controller
     {
         private UserManager<Reader> userManager;
+        private SignInManager<Reader> signInManager;
 
-        public AuthController(UserManager<Reader> usrMgr, IUserValidator<Reader> userValid,
-                IPasswordValidator<Reader> passValid, IPasswordHasher<Reader> passwordHash)
+        public AuthController(UserManager<Reader> usrMgr, SignInManager<Reader> sim)
         {
             userManager = usrMgr;
+            signInManager = sim;
         }
          
-        // GET: /<controller>/
         public IActionResult Register()
         {
             return View(new AuthViewModel() );
@@ -30,7 +30,9 @@ namespace BookInfo.Web.Controllers
             {
                 Reader user = new Reader
                 {
-                    UserName = vm.Name,
+                    UserName = vm.FirstName + vm.LastName,
+                    FirstName = vm.FirstName,
+                    LastName = vm.LastName,
                     Email = vm.Email
                 };
                 IdentityResult result = await userManager.CreateAsync(user, vm.Password);
@@ -53,7 +55,30 @@ namespace BookInfo.Web.Controllers
 
         public IActionResult Login()
         {
-            return View(new AuthViewModel());
+            return View(new LoginViewModel());
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel details)
+        {
+            if (ModelState.IsValid)
+            {
+                Reader user = await userManager.FindByNameAsync(details.UserName);
+                if (user != null)
+                {
+                    await signInManager.SignOutAsync();
+                    Microsoft.AspNetCore.Identity.SignInResult result =
+                            await signInManager.PasswordSignInAsync(
+                                user, details.Password, false, false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                ModelState.AddModelError(nameof(LoginViewModel.UserName),
+                    "Invalid user or password");
+            }
+            return View(details);
         }
     }
 }

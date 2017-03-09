@@ -51,11 +51,11 @@ namespace BookInfo
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseMvcWithDefaultRoute();
+            app.UseIdentity();
             app.UseStatusCodePages();
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
-            app.UseIdentity();
+            app.UseMvcWithDefaultRoute();
 
             SeedData.EnsurePopulated(app);
         }
