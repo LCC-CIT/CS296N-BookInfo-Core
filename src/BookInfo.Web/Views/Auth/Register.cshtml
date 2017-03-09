@@ -1,0 +1,19 @@
+﻿@model AuthViewModel
+@{
+    ViewBag.Title = "Register";
+}
+
+<h2>Register</h2>
+<div asp-validation-summary="   All " class="text-danger"></div>
+<form asp-action="Register" method="post">
+        <label asp-for="Name"></label>
+        <input asp-for="Name" /><br />
+
+        <label asp-for="Email"></label>
+        <input asp-for="Email" /><br />
+
+        <label asp-for="Password"></label>
+        <input asp-for="Password" /><br />
+
+    <button type="submit" >Register</button>
+</form>
