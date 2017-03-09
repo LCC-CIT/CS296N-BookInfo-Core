@@ -10,21 +10,22 @@ namespace BookInfo.Web.Controllers
     public class AuthController : Controller
     {
         private UserManager<Reader> userManager;
+        private SignInManager<Reader> signInManager;
 
-        public AuthController(UserManager<Reader> usrMgr, IUserValidator<Reader> userValid,
-                IPasswordValidator<Reader> passValid, IPasswordHasher<Reader> passwordHash)
+        public AuthController(UserManager<Reader> um, SignInManager<Reader> sim)
         {
-            userManager = usrMgr;
+            userManager = um;
+            signInManager = sim;
         }
-         
+
         // GET: /<controller>/
         public IActionResult Register()
         {
-            return View(new AuthViewModel() );
+            return View(new RegisterViewModel());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(AuthViewModel vm)
+        public async Task<IActionResult> Register(RegisterViewModel vm)
         {
             if (ModelState.IsValid)
             {
@@ -51,16 +52,40 @@ namespace BookInfo.Web.Controllers
             return View(vm);
         }
 
-        public IActionResult Login()
+
+        public ViewResult Login()
         {
-            return View(new AuthViewModel());
+            return View(new LoginViewModel());
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+                Reader user = await userManager.FindByNameAsync(vm.Name);
+                if (user != null)
+                {
+                    await signInManager.SignOutAsync();
+                    Microsoft.AspNetCore.Identity.SignInResult result = await signInManager.PasswordSignInAsync(
+                    user, vm.Password, false, false);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                ModelState.AddModelError(nameof(vm.Name), "Invalid user name or password");
+            }
+            return View(vm);
         }
     }
 }
 
+
 /* Notes:
 
-1. There is not a non-async version of UserManager.CreateAsync
+1. There is not a non-async (synchronous) version of UserManager.CreateAsync
   
 2. Task: The Task class represents a single operation that does not return a value 
    and that usually executes asynchronously. Task objects are one of the central components 
