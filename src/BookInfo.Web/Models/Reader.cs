@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 
-namespace BookInfo.Web.Models
+namespace BookInfo.Models
 {
     public class Reader: IdentityUser
     {

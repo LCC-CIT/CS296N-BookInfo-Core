@@ -7,7 +7,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
 using BookInfo.Web.Repositories;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using BookInfo.Web.Models;
+using BookInfo.Models;
 
 namespace BookInfo
 {

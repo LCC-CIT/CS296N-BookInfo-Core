@@ -1,4 +1,4 @@
-﻿using BookInfo.Web.Models;
+﻿using BookInfo.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 

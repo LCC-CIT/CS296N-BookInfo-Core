@@ -6,14 +6,21 @@
 <h2>Register</h2>
 <div asp-validation-summary="   All " class="text-danger"></div>
 <form asp-action="Register" method="post">
-        <label asp-for="Name"></label>
-        <input asp-for="Name" /><br />
+    <p>
+        <label asp-for="Name"></label><br />
+        <input asp-for="Name" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </p>
+    <p>
+        <label asp-for="Email"></label><br />
+        <input asp-for="Email" />
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </p>
+    <p>
+        <label asp-for="Password"></label><br />
+        <input type="password" asp-for="Password" />
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </p>
 
-        <label asp-for="Email"></label>
-        <input asp-for="Email" /><br />
-
-        <label asp-for="Password"></label>
-        <input asp-for="Password" /><br />
-
-    <button type="submit" >Register</button>
+    <button type="submit">Register</button>
 </form>
