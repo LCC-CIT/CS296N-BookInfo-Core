@@ -5,6 +5,9 @@ using Microsoft.Extensions.Logging;
 using BookInfo.Repositories;
 using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
+using BookInfo.Web.Repositories;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using BookInfo.Web.Models;
 
 namespace BookInfo
 {
@@ -26,6 +29,13 @@ namespace BookInfo
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(
                                 Configuration["Data:BookInfoDb:ConnectionString"]));
+
+            services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(
+                Configuration["Data:BookInfoIdentity:ConnectionString"]));
+
+            services.AddIdentity<Reader, IdentityRole>()
+                .AddEntityFrameworkStores<AppIdentityDbContext>();
+
             services.AddMvc();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
             services.AddTransient<IBookRepository, BookRepository>();
@@ -45,6 +55,7 @@ namespace BookInfo
             app.UseStatusCodePages();
             app.UseDeveloperExceptionPage();
             app.UseStaticFiles();
+            app.UseIdentity();
 
             SeedData.EnsurePopulated(app);
         }
