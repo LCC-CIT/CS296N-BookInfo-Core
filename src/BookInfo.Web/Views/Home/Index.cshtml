@@ -1,4 +1,14 @@
-﻿@* @{ Layout = "_Layout"; } *@
+﻿@model ReaderViewModel
 @{
     ViewBag.Title = "Home";
+}
+
+@if (Model.Authenticated)
+{
+    <h3>Welcome @Model.Name<span>!</span></h3>
+}
+else
+{
+    <a asp-controller="Auth" asp-action="Register">Register</a><br />
+    <a asp-controller="Auth" asp-action="Login">Login</a><br />
 }
