@@ -27,7 +27,8 @@ namespace BookInfo.Controllers
             var readerVm = new ReaderViewModel { Authenticated = false };
             if (HttpContext.User.Identity.IsAuthenticated)
             {
-                readerVm.Name = HttpContext.User.Identity.Name;
+                readerVm.FirstName = HttpContext.User.Identity.Name;
+                //readerVm.LastName = HttpContext.User.F
                 readerVm.Authenticated = true;
             }
             return View(readerVm);
