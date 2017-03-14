@@ -18,8 +18,10 @@
     <!--TODO Change to a for loop to improve performance-->
     foreach (var r in b.BookReviews)
     {
-        @r.Body <span>Rating: </span>@r.Rating<br />
-        <span>Reviewed by: </span>@r.BookReader.UserName
+        <p>
+            @r.Body <span>Rating: </span>@r.Rating<br />
+            <span>Reviewed by: </span>@r.BookReader.UserName
+        </p>
     }
     <p>
         @Html.ActionLink("Add a review", "ReviewForm", "Review",
