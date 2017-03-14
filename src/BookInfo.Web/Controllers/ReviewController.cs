@@ -1,5 +1,6 @@
 ﻿using BookInfo.Models;
 using BookInfo.Repositories;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -19,6 +20,7 @@ namespace BookInfo.Controllers
         }
 
         [HttpGet]
+        [Authorize(Roles="Reviewers")]
         public ViewResult ReviewForm(string title, int id)
         {
             var reviewVm = new ReviewViewModel();

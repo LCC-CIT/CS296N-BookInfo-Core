@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using BookInfo.Models;
 using Microsoft.AspNetCore.Identity;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace BookInfo.Web.Controllers
 {
     public class AuthController : Controller
@@ -39,7 +37,11 @@ namespace BookInfo.Web.Controllers
 
                 if (result.Succeeded)
                 {
-                    return RedirectToAction("Index", "Home");
+                    await userManager.AddToRoleAsync(user, "Reviewers");
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
                 }
                 else
                 {
@@ -49,18 +51,18 @@ namespace BookInfo.Web.Controllers
                     }
                 }
             }
-            // We get here either if the model state is invalid or if xreate user fails
+            // We get here either if the model state is invalid or if create user fails
             return View(vm);
         }
 
-
-        public ViewResult Login()
+        public ViewResult Login(string returnUrl)
         {
+            ViewBag.returnUrl = returnUrl;
             return View(new LoginViewModel());
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login(LoginViewModel vm)
+        public async Task<IActionResult> Login(LoginViewModel vm, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -73,13 +75,20 @@ namespace BookInfo.Web.Controllers
                                 user, vm.Password, false, false);
                     if (result.Succeeded)
                     {
-                        return RedirectToAction("Index", "Home");
+                            // return to the action that required authorization, or to home if returnUrl is null
+                            return Redirect(returnUrl ?? "/");
                     }
                 }
                 ModelState.AddModelError(nameof(LoginViewModel.UserName),
                     "Invalid user or password");
             }
             return View(vm);
+        }
+
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
