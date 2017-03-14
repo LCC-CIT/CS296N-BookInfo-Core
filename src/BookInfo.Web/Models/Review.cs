@@ -16,6 +16,7 @@ namespace BookInfo.Models
         [Display(Name = "Book Rating")]
         public int Rating { get; set; }
 
+        [Required]
         public Reader BookReader { get; set; }
     }
 }

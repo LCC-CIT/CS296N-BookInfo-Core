@@ -6,6 +6,7 @@ namespace BookInfo.Models
     {
         public int BookId { get; set; }
         public string Title { get; set; }
-        public Review BookReview {get; set;}
+        public string Body {get; set;}
+        public int Rating { get; set; }
     }
 }
