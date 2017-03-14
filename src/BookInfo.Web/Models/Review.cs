@@ -16,6 +16,6 @@ namespace BookInfo.Models
         [Display(Name = "Book Rating")]
         public int Rating { get; set; }
 
-        // TODO Add a member property
+        public Reader BookReader { get; set; }
     }
 }

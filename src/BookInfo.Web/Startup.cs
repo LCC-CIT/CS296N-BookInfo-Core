@@ -57,7 +57,7 @@ namespace BookInfo
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
 
-            SeedData.EnsurePopulated(app);
+            SeedData.EnsurePopulated(app).Wait();
         }
     }
 }

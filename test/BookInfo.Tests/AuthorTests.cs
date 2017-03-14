@@ -19,7 +19,7 @@ namespace BookInfo.Tests
         {
             // Arrange
             FakeAuhtorRepository repository = new FakeAuhtorRepository();
-            HomeController controller = new HomeController(null, repository);
+            HomeController controller = new HomeController(repository);
 
             // Act
             List<Author> authors = controller.Authors().ViewData.Model as List<Author>;
