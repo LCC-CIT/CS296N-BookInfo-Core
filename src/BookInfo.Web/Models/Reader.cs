@@ -5,6 +5,8 @@ namespace BookInfo.Models
 {
     public class Reader: IdentityUser
     {
+        public int ReaderId { get; set; }
+
         [Required]
        public string FirstName { get; set; }
 

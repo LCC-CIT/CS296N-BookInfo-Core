@@ -1,17 +1,21 @@
 ﻿using BookInfo.Models;
 using BookInfo.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace BookInfo.Controllers
 {
     public class ReviewController : Controller
     {
         private IBookRepository bookRepo;
+        private UserManager<Reader> userManager;
 
-        public ReviewController(IBookRepository repo)
+        public ReviewController(UserManager<Reader> userMgr, IBookRepository repo)
         {
             bookRepo = repo;
+            userManager = userMgr;
         }
 
         [HttpGet]
@@ -30,7 +34,7 @@ namespace BookInfo.Controllers
 
 
         [HttpPost]
-        public ActionResult ReviewForm(ReviewViewModel reviewVm)
+        public async Task<IActionResult> ReviewForm(ReviewViewModel reviewVm)
         {
             string body = reviewVm.BookReview.Body;
             if (string.IsNullOrEmpty(body) || body.IndexOf(" ", System.StringComparison.Ordinal) < 1)
@@ -49,7 +53,11 @@ namespace BookInfo.Controllers
                              select b).FirstOrDefault<Book>();
 
                 // add the review and save the book object to the db
-                book.BookReviews.Add(new Review { Body = reviewVm.BookReview.Body, Rating = reviewVm.BookReview.Rating });
+                Review review = new Review { Body = reviewVm.BookReview.Body, Rating = reviewVm.BookReview.Rating };
+                string name = HttpContext.User.Identity.Name;
+                review.BookReader = await userManager.FindByNameAsync(name);
+
+                book.BookReviews.Add(review);
                 bookRepo.Update(book);
 
                return RedirectToAction("Index", "Book");

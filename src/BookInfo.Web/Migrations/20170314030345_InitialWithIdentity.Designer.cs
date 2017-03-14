@@ -8,8 +8,8 @@ using BookInfo.Web.Repositories;
 namespace BookInfo.Web.Migrations
 {
     [DbContext(typeof(AppIdentityDbContext))]
-    [Migration("20170308233733_Identity")]
-    partial class Identity
+    [Migration("20170314030345_InitialWithIdentity")]
+    partial class InitialWithIdentity
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -17,7 +17,7 @@ namespace BookInfo.Web.Migrations
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BookInfo.Web.Models.Reader", b =>
+            modelBuilder.Entity("BookInfo.Models.Reader", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -31,6 +31,12 @@ namespace BookInfo.Web.Migrations
                         .HasAnnotation("MaxLength", 256);
 
                     b.Property<bool>("EmailConfirmed");
+
+                    b.Property<string>("FirstName")
+                        .IsRequired();
+
+                    b.Property<string>("LastName")
+                        .IsRequired();
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -47,6 +53,8 @@ namespace BookInfo.Web.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
+
+                    b.Property<int>("ReaderId");
 
                     b.Property<string>("SecurityStamp");
 
@@ -183,7 +191,7 @@ namespace BookInfo.Web.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("BookInfo.Web.Models.Reader")
+                    b.HasOne("BookInfo.Models.Reader")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -191,7 +199,7 @@ namespace BookInfo.Web.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("BookInfo.Web.Models.Reader")
+                    b.HasOne("BookInfo.Models.Reader")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -204,7 +212,7 @@ namespace BookInfo.Web.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("BookInfo.Web.Models.Reader")
+                    b.HasOne("BookInfo.Models.Reader")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
