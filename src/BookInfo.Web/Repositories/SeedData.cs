@@ -1,7 +1,6 @@
 ﻿using BookInfo.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
@@ -21,10 +20,9 @@ namespace BookInfo.Repositories
             string username = firstName + lastName;
             string email = "BilboB@theshire.org";
             string password = "friend";
-            string role = "Reviewers";
+
 
             UserManager<Reader> userManager = app.ApplicationServices.GetRequiredService<UserManager<Reader>>();
-            RoleManager<IdentityRole> roleManager = app.ApplicationServices.GetRequiredService<RoleManager<IdentityRole>>();
             if (!context.Books.Any())
             {
                 Reader user = await userManager.FindByNameAsync(username);
@@ -32,14 +30,6 @@ namespace BookInfo.Repositories
                 {
                     user = new Reader {FirstName = firstName, LastName = lastName, UserName = username, Email = email };
                     IdentityResult result = await userManager.CreateAsync(user, password);
-                    if (await roleManager.FindByNameAsync(role) == null)
-                    {
-                        await roleManager.CreateAsync(new IdentityRole(role));
-                        if (result.Succeeded)
-                        {
-                            await userManager.AddToRoleAsync(user, role);
-                        }
-                    }
                 }
 
                 Author author = new Author { Name = "J. R. R. Tolkien" };
