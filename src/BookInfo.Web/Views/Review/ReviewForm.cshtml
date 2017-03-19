@@ -12,15 +12,15 @@ Book reviw for: <cite>@Model.Title</cite>
     <input asp-for="BookId" type="hidden" />
     <input asp-for="Title" type="hidden" />
     <p>
-        <label asp-for="BookReview.Body"></label>
-        <input asp-for="BookReview.Body" />
-        <span asp-validation-for="BookReview.Body" class="text-danger"></span>
+        <label asp-for="Body"></label>
+        <input asp-for="Body" />
+        <span asp-validation-for="Body" class="text-danger"></span>
     </p>
 
     <p>
-        <label asp-for="BookReview.Rating"></label>
-        <input asp-for="BookReview.Rating" />
-        <span asp-validation-for="BookReview.Rating" class="text-danger"></span>
+        <label asp-for="Rating"></label>
+        <input asp-for="Rating" />
+        <span asp-validation-for="Rating" class="text-danger"></span>
     </p>
 
     <button type="submit">Post</button>

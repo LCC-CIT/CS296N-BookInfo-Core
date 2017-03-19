@@ -3,9 +3,10 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Register</h2>
+<h2>Login</h2>
 <div asp-validation-summary="    All " class="text-danger"></div>
 <form asp-action="Login" method="post">
+    <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
     <p>
         <label asp-for="UserName"></label><br />
         <input asp-for="UserName" />

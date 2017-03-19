@@ -6,6 +6,8 @@
 @if (Model.Authenticated)
 {
     <h3>Welcome @Model.FirstName<span> </span>@Model.LastName<span>!</span></h3>
+    <br />
+    <a asp-controller="Auth" asp-action="Logout">Logout</a><br />
 }
 else
 {
