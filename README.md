@@ -7,6 +7,7 @@ This ASP.NET Core MVC web app was written to demonstrate programming concepts. E
 - **Validation** demonstrates validating input both in the browser and on the server using Tag Helpers and Data Annotations.
 - **Authentication** demonstrates Registration, login, and authentication of users with Identity.
 - **ReviewByReader** demonstrates adding an Identity user via the SeedData class and making a user object the member of a domain model. The Identity user and the domain entities are stored in separate databases.
+- **Authorization** demonstrates adding adding a role, assigning a user to a role, and restricting a controller method to only allow users in that role. The role added is "Reviewers" and the restricted method is Review/ReviewForm.
 
 This demo was written for CS296N, Web Development 2: ASP.NET, at Lane Community College.
 For more information on courses and degrees at Lane Community college visit https://www.lanecc.edu/cit
