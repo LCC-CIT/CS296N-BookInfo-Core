@@ -7,6 +7,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{790E6537-C9B
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{58F868C1-BA7C-4039-A9DF-EA1943226D47}"
 	ProjectSection(SolutionItems) = preProject
+		docs\EfCore.md = docs\EfCore.md
 		global.json = global.json
 		README.md = README.md
 	EndProjectSection
@@ -16,6 +17,11 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BookInfo.Tests", "test\BookInfo.Tests\BookInfo.Tests.xproj", "{CB1EF592-9D46-4BAA-903C-80B0706193E0}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BookInfo.Web", "src\BookInfo.Web\BookInfo.Web.xproj", "{7D76B6CE-42F3-4EBE-9B6C-8158CEAADC16}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{9A28FE30-6B1D-4455-922F-783BC42A8D97}"
+	ProjectSection(SolutionItems) = preProject
+		docs\EfCore.md = docs\EfCore.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,5 +44,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{CB1EF592-9D46-4BAA-903C-80B0706193E0} = {29CBAB16-D91C-4C7E-AEE5-84039B77177E}
 		{7D76B6CE-42F3-4EBE-9B6C-8158CEAADC16} = {790E6537-C9B4-411F-9018-0234BEC6E05A}
+		{9A28FE30-6B1D-4455-922F-783BC42A8D97} = {58F868C1-BA7C-4039-A9DF-EA1943226D47}
 	EndGlobalSection
 EndGlobal
