@@ -10,12 +10,13 @@ namespace BookInfo.Web.Controllers
     {
         private UserManager<IdentityReader> userManager;
         private SignInManager<IdentityReader> signInManager;
-        private ReaderRepository readerRepo;
+        private IReaderRepository readerRepo;
 
-        public AuthController(UserManager<IdentityReader> usrMgr, SignInManager<IdentityReader> sim, IReaderRepository readerRepo)
+        public AuthController(UserManager<IdentityReader> usrMgr, SignInManager<IdentityReader> sim, IReaderRepository rRepo)
         {
             userManager = usrMgr;
             signInManager = sim;
+            readerRepo = rRepo;
         }
          
         public IActionResult Register()
@@ -29,7 +30,8 @@ namespace BookInfo.Web.Controllers
             if (ModelState.IsValid)
             {
                 IdentityResult identityResult;
-                Reader reader = readerRepo.CreateReader(vm.FirstName, vm.LastName, vm.Email, vm.Password, "reviewers", out identityResult);
+                Reader reader = readerRepo.CreateReader(vm.FirstName, vm.LastName, vm.Email, vm.Password,
+                    ReaderRole.Reviewers, out identityResult);
                 if (identityResult.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");

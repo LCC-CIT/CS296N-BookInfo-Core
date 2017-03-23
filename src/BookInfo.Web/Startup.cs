@@ -40,6 +40,7 @@ namespace BookInfo
             services.AddMvc();
             services.AddTransient<IAuthorRepository, AuthorRepository>();
             services.AddTransient<IBookRepository, BookRepository>();
+            services.AddTransient<IReaderRepository, ReaderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

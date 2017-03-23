@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace BookInfo.Repositories
 {
@@ -13,22 +12,48 @@ namespace BookInfo.Repositories
     {
         public static void EnsurePopulated(IApplicationBuilder app)
         {
-            ApplicationDbContext context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
-            // Add a user for testing
-            string firstName = "Bilbo";
-            string lastName = "Baggins";
-            string userName = firstName + lastName;
-            string email = "BilboB@theshire.org";
-            string password = "friend";
-            string role = "Reviewers";
-
-            UserManager<IdentityReader> userManager = app.ApplicationServices.GetRequiredService<UserManager<IdentityReader>>();
-            RoleManager<IdentityRole> roleManager = app.ApplicationServices.GetRequiredService<RoleManager<IdentityRole>>();
+            ApplicationDbContext context = 
+                app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
+            UserManager<IdentityReader> userManager = 
+                app.ApplicationServices.GetRequiredService<UserManager<IdentityReader>>();
+            RoleManager<IdentityRole> roleManager = 
+                app.ApplicationServices.GetRequiredService<RoleManager<IdentityRole>>();
             ReaderRepository readerRepo = new ReaderRepository(userManager, context);
+
             if (!context.Books.Any())
             {
+
+                var asyncRoleTask = roleManager.FindByNameAsync(ReaderRole.Admins.ToString());
+                if (asyncRoleTask.Result == null)
+                {
+                    var asyncResultTask = roleManager.CreateAsync(
+                        new IdentityRole(ReaderRole.Admins.ToString()));
+                }
+
+                // Add a user for testing
+                string firstName = "Bilbo";
+                string lastName = "Baggins";
+                string userName = firstName + lastName;
+                string email = "BilboB@theshire.org";
+                string password = "friend";
+                ReaderRole role = ReaderRole.Reviewers;
+
                 IdentityResult result;
-                Reader reader = readerRepo.CreateReader(firstName, lastName, email, password, role, out result);
+                Reader reader = readerRepo.CreateReader(firstName, lastName, email, password,
+                    ReaderRole.Reviewers, out result);
+
+                // Create Reviewers role, add user to "Reviewers" role
+                asyncRoleTask = roleManager.FindByNameAsync(role.ToString());
+                if (asyncRoleTask.Result == null)
+                {
+                    var asyncResultTask = roleManager.CreateAsync(new IdentityRole(role.ToString()));
+                    if (asyncResultTask.Result.Succeeded)
+                    {
+                        asyncResultTask = userManager.AddToRoleAsync(readerRepo.GetIdentityReaderById(
+                                        reader.IdentityReaderId), role.ToString());
+                    }
+                }
+
 
                 Author author = new Author { Name = "J. R. R. Tolkien" };
                 context.Authors.Add(author);

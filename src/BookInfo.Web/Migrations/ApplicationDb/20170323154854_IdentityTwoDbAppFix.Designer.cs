@@ -8,8 +8,8 @@ using BookInfo.Repositories;
 namespace BookInfo.Web.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170323053551_IdentityTwoDbFix")]
-    partial class IdentityTwoDbFix
+    [Migration("20170323154854_IdentityTwoDbAppFix")]
+    partial class IdentityTwoDbAppFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

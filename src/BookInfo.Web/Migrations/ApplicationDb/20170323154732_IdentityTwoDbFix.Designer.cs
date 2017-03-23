@@ -8,8 +8,8 @@ using BookInfo.Repositories;
 namespace BookInfo.Web.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170314031918_InitialWithIdentity")]
-    partial class InitialWithIdentity
+    [Migration("20170323154732_IdentityTwoDbFix")]
+    partial class IdentityTwoDbFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -56,45 +56,11 @@ namespace BookInfo.Web.Migrations.ApplicationDb
                     b.Property<int>("ReaderId")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<int>("AccessFailedCount");
-
-                    b.Property<string>("ConcurrencyStamp");
-
-                    b.Property<string>("Email");
-
-                    b.Property<bool>("EmailConfirmed");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired();
-
-                    b.Property<string>("Id");
-
-                    b.Property<string>("LastName")
-                        .IsRequired();
-
-                    b.Property<bool>("LockoutEnabled");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd");
-
-                    b.Property<string>("NormalizedEmail");
-
-                    b.Property<string>("NormalizedUserName");
-
-                    b.Property<string>("PasswordHash");
-
-                    b.Property<string>("PhoneNumber");
-
-                    b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<string>("SecurityStamp");
-
-                    b.Property<bool>("TwoFactorEnabled");
-
-                    b.Property<string>("UserName");
+                    b.Property<string>("IdentityReaderId");
 
                     b.HasKey("ReaderId");
 
-                    b.ToTable("Reader");
+                    b.ToTable("Readers");
                 });
 
             modelBuilder.Entity("BookInfo.Models.Review", b =>
@@ -107,7 +73,7 @@ namespace BookInfo.Web.Migrations.ApplicationDb
 
                     b.Property<int?>("BookId");
 
-                    b.Property<int?>("BookReaderReaderId");
+                    b.Property<int>("BookReaderReaderId");
 
                     b.Property<int>("Rating");
 
@@ -135,7 +101,8 @@ namespace BookInfo.Web.Migrations.ApplicationDb
 
                     b.HasOne("BookInfo.Models.Reader", "BookReader")
                         .WithMany()
-                        .HasForeignKey("BookReaderReaderId");
+                        .HasForeignKey("BookReaderReaderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
         }
     }

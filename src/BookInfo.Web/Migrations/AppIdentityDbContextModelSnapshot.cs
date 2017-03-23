@@ -16,7 +16,7 @@ namespace BookInfo.Web.Migrations
                 .HasAnnotation("ProductVersion", "1.1.0-rtm-22752")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("BookInfo.Models.Reader", b =>
+            modelBuilder.Entity("BookInfo.Models.IdentityReader", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -52,8 +52,6 @@ namespace BookInfo.Web.Migrations
                     b.Property<string>("PhoneNumber");
 
                     b.Property<bool>("PhoneNumberConfirmed");
-
-                    b.Property<int>("ReaderId");
 
                     b.Property<string>("SecurityStamp");
 
@@ -190,7 +188,7 @@ namespace BookInfo.Web.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("BookInfo.Models.Reader")
+                    b.HasOne("BookInfo.Models.IdentityReader")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -198,7 +196,7 @@ namespace BookInfo.Web.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("BookInfo.Models.Reader")
+                    b.HasOne("BookInfo.Models.IdentityReader")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -211,7 +209,7 @@ namespace BookInfo.Web.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("BookInfo.Models.Reader")
+                    b.HasOne("BookInfo.Models.IdentityReader")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);

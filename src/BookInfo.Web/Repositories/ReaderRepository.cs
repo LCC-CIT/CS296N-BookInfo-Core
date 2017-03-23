@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace BookInfo.Repositories
 {
-    public class ReaderRepository
+    public class ReaderRepository : IReaderRepository
     {
 
         private UserManager<IdentityReader> userManager;
@@ -50,11 +50,11 @@ namespace BookInfo.Repositories
         }
 
         // Create an IdentityReader object and a Reader object that points to the IdentityReader
-        public Reader CreateReader(string firstName, string lastName, string eMail, string password, string role, out IdentityResult identityResult)
+        public Reader CreateReader(string firstName, string lastName, string eMail, string password, 
+            ReaderRole role, out IdentityResult identityResult)
         {
             Reader reader = null;
             identityResult = new IdentityResult();
-
             // Check to see if this IdentityReader already exists
             var asyncTask = userManager.FindByEmailAsync(eMail);
             var identityReader = asyncTask.Result;
@@ -74,7 +74,7 @@ namespace BookInfo.Repositories
                 if (identityResult.Succeeded == true)
                 {
                     // Add a role to the IdentityReader
-                    asyncResultTask = userManager.AddToRoleAsync(identityReader, role);
+                    asyncResultTask = userManager.AddToRoleAsync(identityReader, role.ToString());
                     identityResult = asyncResultTask.Result;
                 }
 
