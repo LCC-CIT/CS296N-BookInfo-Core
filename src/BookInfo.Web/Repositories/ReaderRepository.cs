@@ -54,9 +54,10 @@ namespace BookInfo.Repositories
             ReaderRole role, out IdentityResult identityResult)
         {
             Reader reader = null;
-            identityResult = new IdentityResult();
+            identityResult = null;
             // Check to see if this IdentityReader already exists
             var asyncTask = userManager.FindByEmailAsync(eMail);
+            asyncTask.Wait();
             var identityReader = asyncTask.Result;
             if (identityReader == null)
             {
@@ -70,18 +71,26 @@ namespace BookInfo.Repositories
                 };
 
                 var asyncResultTask = userManager.CreateAsync(identityReader, password);
+                asyncResultTask.Wait();
                 identityResult = asyncResultTask.Result;
-                if (identityResult.Succeeded == true)
+                if (identityResult.Succeeded)
                 {
                     // Add a role to the IdentityReader
                     asyncResultTask = userManager.AddToRoleAsync(identityReader, role.ToString());
+                    asyncResultTask.Wait();
                     identityResult = asyncResultTask.Result;
+                    if (identityResult.Succeeded)
+                    {
+                        // Create a Reader that points to the IdentityReader
+                        reader = new Reader();
+                        reader.IdentityReaderId = identityReader.Id;
+                        context.Readers.Add(reader);
+                    }
                 }
-
-                // Create a Reader that points to the IdentityReader
-                reader = new Reader();
-                reader.IdentityReaderId = identityReader.Id;
-                context.Readers.Add(reader);
+                else
+                {
+                    identityResult = null;  // The Reader already exists
+                }
             }
 
             return reader;

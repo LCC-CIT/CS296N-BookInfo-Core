@@ -30,19 +30,25 @@ namespace BookInfo.Web.Controllers
             if (ModelState.IsValid)
             {
                 IdentityResult identityResult;
-                Reader reader = readerRepo.CreateReader(vm.FirstName, vm.LastName, vm.Email, vm.Password,
-                    ReaderRole.Reviewers, out identityResult);
-                if (identityResult.Succeeded)
+                Reader reader = readerRepo.CreateReader(vm.FirstName, vm.LastName, vm.Email, 
+                    vm.Password, ReaderRole.Reviewers, out identityResult);
+                if (identityResult != null)
                 {
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    foreach (IdentityError error in identityResult.Errors)
+                    if (identityResult.Succeeded)
                     {
-                        ModelState.AddModelError("", error.Description);
+                        return RedirectToAction("Index", "Home");
                     }
-
+                    else
+                    {
+                        foreach (IdentityError error in identityResult.Errors)
+                        {
+                            ModelState.AddModelError("", error.Description);
+                        }
+                    }
+                }
+                else    // reader already exists
+                {
+                    ModelState.AddModelError("", "This user is already registered");
                 }
             }
             // We get here either if the model state is invalid or if create user fails

@@ -19,8 +19,9 @@ namespace BookInfo.Repositories
             RoleManager<IdentityRole> roleManager = 
                 app.ApplicationServices.GetRequiredService<RoleManager<IdentityRole>>();
             ReaderRepository readerRepo = new ReaderRepository(userManager, context);
+            Reader reader;
 
-            if (!context.Books.Any())
+            if (!context.Readers.Any() && !context.Books.Any())
             {
 
                 var asyncRoleTask = roleManager.FindByNameAsync(ReaderRole.Admins.ToString());
@@ -30,30 +31,30 @@ namespace BookInfo.Repositories
                         new IdentityRole(ReaderRole.Admins.ToString()));
                 }
 
+                asyncRoleTask = roleManager.FindByNameAsync(ReaderRole.Reviewers.ToString());
+                if (asyncRoleTask.Result == null)
+                {
+                    var asyncResultTask = roleManager.CreateAsync(
+                        new IdentityRole(ReaderRole.Reviewers.ToString()));
+                }
+
                 // Add a user for testing
                 string firstName = "Bilbo";
                 string lastName = "Baggins";
                 string userName = firstName + lastName;
                 string email = "BilboB@theshire.org";
-                string password = "friend";
+                string password = "SpeakFriend-50";
                 ReaderRole role = ReaderRole.Reviewers;
 
                 IdentityResult result;
-                Reader reader = readerRepo.CreateReader(firstName, lastName, email, password,
+                reader = readerRepo.CreateReader(firstName, lastName, email, password,
                     ReaderRole.Reviewers, out result);
-
-                // Create Reviewers role, add user to "Reviewers" role
-                asyncRoleTask = roleManager.FindByNameAsync(role.ToString());
-                if (asyncRoleTask.Result == null)
+                if (result != null)  // null if this reader already exists
                 {
-                    var asyncResultTask = roleManager.CreateAsync(new IdentityRole(role.ToString()));
-                    if (asyncResultTask.Result.Succeeded)
-                    {
-                        asyncResultTask = userManager.AddToRoleAsync(readerRepo.GetIdentityReaderById(
-                                        reader.IdentityReaderId), role.ToString());
-                    }
+                    reader.IdentityReaderId = readerRepo.GetIdentityReaderByName(userName).Id;
+                    context.Readers.Add(reader);
+                    context.SaveChanges();
                 }
-
 
                 Author author = new Author { Name = "J. R. R. Tolkien" };
                 context.Authors.Add(author);
