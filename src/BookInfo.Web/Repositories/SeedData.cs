@@ -11,36 +11,24 @@ namespace BookInfo.Repositories
 {
     public class SeedData
     {
-        public static async Task EnsurePopulated(IApplicationBuilder app)
+        public static void EnsurePopulated(IApplicationBuilder app)
         {
             ApplicationDbContext context = app.ApplicationServices.GetRequiredService<ApplicationDbContext>();
-
             // Add a user for testing
             string firstName = "Bilbo";
             string lastName = "Baggins";
-            string username = firstName + lastName;
+            string userName = firstName + lastName;
             string email = "BilboB@theshire.org";
             string password = "friend";
             string role = "Reviewers";
 
-            UserManager<Reader> userManager = app.ApplicationServices.GetRequiredService<UserManager<Reader>>();
+            UserManager<IdentityReader> userManager = app.ApplicationServices.GetRequiredService<UserManager<IdentityReader>>();
             RoleManager<IdentityRole> roleManager = app.ApplicationServices.GetRequiredService<RoleManager<IdentityRole>>();
+            ReaderRepository readerRepo = new ReaderRepository(userManager, context);
             if (!context.Books.Any())
             {
-                Reader user = await userManager.FindByNameAsync(username);
-                if (user == null)
-                {
-                    user = new Reader {FirstName = firstName, LastName = lastName, UserName = username, Email = email };
-                    IdentityResult result = await userManager.CreateAsync(user, password);
-                    if (await roleManager.FindByNameAsync(role) == null)
-                    {
-                        await roleManager.CreateAsync(new IdentityRole(role));
-                        if (result.Succeeded)
-                        {
-                            await userManager.AddToRoleAsync(user, role);
-                        }
-                    }
-                }
+                IdentityResult result;
+                Reader reader = readerRepo.CreateReader(firstName, lastName, email, password, role, out result);
 
                 Author author = new Author { Name = "J. R. R. Tolkien" };
                 context.Authors.Add(author);
@@ -58,7 +46,7 @@ namespace BookInfo.Repositories
                 book = new Book { Title = "Prince of Foxes", Date = DateTime.Parse("1/1/1947"), Genre = "Historical Fiction" };
                 context.Authors.Add(author);
                 book.Authors.Add(author);
-                Review review = new Review { Body = "Amazing characters!", Rating = 5, BookReader = user};
+                Review review = new Review { Body = "Amazing characters!", Rating = 5, BookReader = reader};
                 book.BookReviews.Add(review);
                 context.Books.Add(book);
 
@@ -66,7 +54,7 @@ namespace BookInfo.Repositories
                 book = new Book { Title = "River God", Date = DateTime.Parse("1/1/1975"), Genre = "Historical Fiction" };
                 context.Authors.Add(author);
                 book.Authors.Add(author);
-                review = new Review{Body = "Wow, really great book!", Rating = 5, BookReader = user};
+                review = new Review{Body = "Wow, really great book!", Rating = 5, BookReader = reader};
                 book.BookReviews.Add(review);
                 context.Books.Add(book);
 

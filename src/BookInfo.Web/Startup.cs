@@ -33,7 +33,7 @@ namespace BookInfo
             services.AddDbContext<AppIdentityDbContext>(options => options.UseSqlServer(
                 Configuration["Data:BookInfoIdentity:ConnectionString"]));
 
-            services.AddIdentity<Reader, IdentityRole>(opts => 
+            services.AddIdentity<IdentityReader, IdentityRole>(opts => 
                 {opts.Cookies.ApplicationCookie.LoginPath = "/Auth/Login";})
                  .AddEntityFrameworkStores<AppIdentityDbContext>();
 
@@ -58,7 +58,7 @@ namespace BookInfo
             app.UseStaticFiles();
             app.UseMvcWithDefaultRoute();
 
-            SeedData.EnsurePopulated(app).Wait();
+            SeedData.EnsurePopulated(app);
         }
     }
 }

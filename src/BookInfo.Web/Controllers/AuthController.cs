@@ -2,15 +2,17 @@
 using Microsoft.AspNetCore.Mvc;
 using BookInfo.Models;
 using Microsoft.AspNetCore.Identity;
+using BookInfo.Repositories;
 
 namespace BookInfo.Web.Controllers
 {
     public class AuthController : Controller
     {
-        private UserManager<Reader> userManager;
-        private SignInManager<Reader> signInManager;
+        private UserManager<IdentityReader> userManager;
+        private SignInManager<IdentityReader> signInManager;
+        private ReaderRepository readerRepo;
 
-        public AuthController(UserManager<Reader> usrMgr, SignInManager<Reader> sim)
+        public AuthController(UserManager<IdentityReader> usrMgr, SignInManager<IdentityReader> sim, IReaderRepository readerRepo)
         {
             userManager = usrMgr;
             signInManager = sim;
@@ -22,33 +24,23 @@ namespace BookInfo.Web.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel vm)
+        public IActionResult Register(RegisterViewModel vm)
         {
             if (ModelState.IsValid)
             {
-                Reader user = new Reader
+                IdentityResult identityResult;
+                Reader reader = readerRepo.CreateReader(vm.FirstName, vm.LastName, vm.Email, vm.Password, "reviewers", out identityResult);
+                if (identityResult.Succeeded)
                 {
-                    UserName = vm.FirstName + vm.LastName,
-                    FirstName = vm.FirstName,
-                    LastName = vm.LastName,
-                    Email = vm.Email
-                };
-                IdentityResult result = await userManager.CreateAsync(user, vm.Password);
-
-                if (result.Succeeded)
-                {
-                    await userManager.AddToRoleAsync(user, "Reviewers");
-                    if (result.Succeeded)
-                    {
-                        return RedirectToAction("Index", "Home");
-                    }
+                    return RedirectToAction("Index", "Home");
                 }
                 else
                 {
-                    foreach (IdentityError error in result.Errors)
+                    foreach (IdentityError error in identityResult.Errors)
                     {
                         ModelState.AddModelError("", error.Description);
                     }
+
                 }
             }
             // We get here either if the model state is invalid or if create user fails
@@ -66,13 +58,13 @@ namespace BookInfo.Web.Controllers
         {
             if (ModelState.IsValid)
             {
-                Reader user = await userManager.FindByNameAsync(vm.UserName);
-                if (user != null)
+                IdentityReader identityReader = readerRepo.GetIdentityReaderByName(vm.UserName);
+                if (identityReader != null)
                 {
                     await signInManager.SignOutAsync();
                     Microsoft.AspNetCore.Identity.SignInResult result =
                             await signInManager.PasswordSignInAsync(
-                                user, vm.Password, false, false);
+                                identityReader, vm.Password, false, false);
                     if (result.Succeeded)
                     {
                             // return to the action that required authorization, or to home if returnUrl is null

@@ -10,15 +10,16 @@ namespace BookInfo.Repositories
         : base(options) { }
         public DbSet<Author> Authors { get; set; }
         public DbSet<Book> Books { get; set; }
+        public DbSet<Reader> Readers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Ignore<IdentityUserLogin<string>>();
-            modelBuilder.Ignore<IdentityUserRole<string>>();
-            modelBuilder.Ignore<IdentityUserClaim<string>>();
-            modelBuilder.Ignore<IdentityUserToken<string>>();
-            modelBuilder.Ignore<IdentityUser<string>>();
+            //modelBuilder.Ignore<IdentityUserLogin<string>>();
+            //modelBuilder.Ignore<IdentityUserRole<string>>();
+            //modelBuilder.Ignore<IdentityUserClaim<string>>();
+            //modelBuilder.Ignore<IdentityUserToken<string>>();
+            //modelBuilder.Ignore<IdentityUser<string>>();
         }
     }
 }

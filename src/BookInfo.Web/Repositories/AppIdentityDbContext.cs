@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BookInfo.Web.Repositories
 {
-    public class AppIdentityDbContext : IdentityDbContext<Reader>
+    public class AppIdentityDbContext : IdentityDbContext<IdentityReader>
     {
             public AppIdentityDbContext(DbContextOptions<AppIdentityDbContext> options)
             : base(options) { }
