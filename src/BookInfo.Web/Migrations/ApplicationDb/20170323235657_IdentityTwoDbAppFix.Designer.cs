@@ -8,7 +8,7 @@ using BookInfo.Repositories;
 namespace BookInfo.Web.Migrations.ApplicationDb
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170323154854_IdentityTwoDbAppFix")]
+    [Migration("20170323235657_IdentityTwoDbAppFix")]
     partial class IdentityTwoDbAppFix
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -57,6 +57,8 @@ namespace BookInfo.Web.Migrations.ApplicationDb
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("IdentityReaderId");
+
+                    b.Property<string>("UserName");
 
                     b.HasKey("ReaderId");
 

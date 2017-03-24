@@ -9,6 +9,7 @@ namespace BookInfo.Repositories
     {
         Reader CreateReader(string firstName, string lastName, string eMail, string password, ReaderRole role, out IdentityResult identityResult);
         IdentityReader GetIdentityReaderById(string id);
+        Reader GetReaderByName(string userName);
         IdentityReader GetIdentityReaderByName(string userName);
     }
 }

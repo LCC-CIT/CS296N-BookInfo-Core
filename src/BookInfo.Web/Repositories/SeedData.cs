@@ -29,6 +29,7 @@ namespace BookInfo.Repositories
                 {
                     var asyncResultTask = roleManager.CreateAsync(
                         new IdentityRole(ReaderRole.Admins.ToString()));
+                    asyncResultTask.Wait();
                 }
 
                 asyncRoleTask = roleManager.FindByNameAsync(ReaderRole.Reviewers.ToString());
@@ -36,6 +37,7 @@ namespace BookInfo.Repositories
                 {
                     var asyncResultTask = roleManager.CreateAsync(
                         new IdentityRole(ReaderRole.Reviewers.ToString()));
+                    asyncResultTask.Wait();
                 }
 
                 // Add a user for testing
@@ -44,7 +46,6 @@ namespace BookInfo.Repositories
                 string userName = firstName + lastName;
                 string email = "BilboB@theshire.org";
                 string password = "SpeakFriend-50";
-                ReaderRole role = ReaderRole.Reviewers;
 
                 IdentityResult result;
                 reader = readerRepo.CreateReader(firstName, lastName, email, password,

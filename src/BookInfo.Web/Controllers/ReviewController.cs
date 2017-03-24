@@ -11,12 +11,12 @@ namespace BookInfo.Controllers
     public class ReviewController : Controller
     {
         private IBookRepository bookRepo;
-        private UserManager<Reader> userManager;
+        private IReaderRepository readerRepo;
 
-        public ReviewController(UserManager<Reader> userMgr, IBookRepository repo)
+        public ReviewController(IReaderRepository rRepo, IBookRepository bRepo)
         {
-            bookRepo = repo;
-            userManager = userMgr;
+            bookRepo = bRepo;
+            readerRepo = rRepo;
         }
 
         [HttpGet]
@@ -52,7 +52,7 @@ namespace BookInfo.Controllers
                 // add the review and save the book object to the db
                 Review review = new Review { Body = reviewVm.Body, Rating = reviewVm.Rating };
                 string name = HttpContext.User.Identity.Name;
-                review.BookReader = await userManager.FindByNameAsync(name);
+                review.BookReader = readerRepo.GetReaderByName(name);
 
                 book.BookReviews.Add(review);
                 bookRepo.Update(book);

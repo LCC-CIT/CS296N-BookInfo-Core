@@ -57,6 +57,8 @@ namespace BookInfo.Web.Migrations.ApplicationDb
 
                     b.Property<string>("IdentityReaderId");
 
+                    b.Property<string>("UserName");
+
                     b.HasKey("ReaderId");
 
                     b.ToTable("Readers");
