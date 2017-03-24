@@ -50,12 +50,6 @@ namespace BookInfo.Repositories
                 IdentityResult result;
                 reader = readerRepo.CreateReader(firstName, lastName, email, password,
                     ReaderRole.Reviewers, out result);
-                if (result != null)  // null if this reader already exists
-                {
-                    reader.IdentityReaderId = readerRepo.GetIdentityReaderByName(userName).Id;
-                    context.Readers.Add(reader);
-                    context.SaveChanges();
-                }
 
                 Author author = new Author { Name = "J. R. R. Tolkien" };
                 context.Authors.Add(author);
