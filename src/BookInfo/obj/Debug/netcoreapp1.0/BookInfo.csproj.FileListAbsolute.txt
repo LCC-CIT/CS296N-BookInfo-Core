@@ -1,0 +1,11 @@
+\\vmware-host\Shared Folders\DataCard\Repos\CS296N-BookInfo-Core\src\BookInfo\bin\Debug\netcoreapp1.0\BookInfo.deps.json
+\\vmware-host\Shared Folders\DataCard\Repos\CS296N-BookInfo-Core\src\BookInfo\bin\Debug\netcoreapp1.0\BookInfo.runtimeconfig.json
+\\vmware-host\Shared Folders\DataCard\Repos\CS296N-BookInfo-Core\src\BookInfo\bin\Debug\netcoreapp1.0\BookInfo.runtimeconfig.dev.json
+\\vmware-host\Shared Folders\DataCard\Repos\CS296N-BookInfo-Core\src\BookInfo\bin\Debug\netcoreapp1.0\BookInfo.dll
+\\vmware-host\Shared Folders\DataCard\Repos\CS296N-BookInfo-Core\src\BookInfo\bin\Debug\netcoreapp1.0\BookInfo.pdb
+\\vmware-host\Shared Folders\DataCard\Repos\CS296N-BookInfo-Core\src\BookInfo\obj\Debug\netcoreapp1.0\BookInfo.csprojResolveAssemblyReference.cache
+\\vmware-host\Shared Folders\DataCard\Repos\CS296N-BookInfo-Core\src\BookInfo\obj\Debug\netcoreapp1.0\BookInfo.csproj.CoreCompileInputs.cache
+\\vmware-host\Shared Folders\DataCard\Repos\CS296N-BookInfo-Core\src\BookInfo\obj\Debug\netcoreapp1.0\BookInfo.AssemblyInfoInputs.cache
+\\vmware-host\Shared Folders\DataCard\Repos\CS296N-BookInfo-Core\src\BookInfo\obj\Debug\netcoreapp1.0\BookInfo.AssemblyInfo.cs
+\\vmware-host\Shared Folders\DataCard\Repos\CS296N-BookInfo-Core\src\BookInfo\obj\Debug\netcoreapp1.0\BookInfo.dll
+\\vmware-host\Shared Folders\DataCard\Repos\CS296N-BookInfo-Core\src\BookInfo\obj\Debug\netcoreapp1.0\BookInfo.pdb

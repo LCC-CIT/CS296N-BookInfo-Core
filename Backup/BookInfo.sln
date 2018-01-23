@@ -1,17 +1,20 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{790E6537-C9B4-411F-9018-0234BEC6E05A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{58F868C1-BA7C-4039-A9DF-EA1943226D47}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BookInfo", "src\BookInfo\BookInfo.xproj", "{FB2E437F-5127-48FD-9957-1AC1F977ADBA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{29CBAB16-D91C-4C7E-AEE5-84039B77177E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookInfo", "src\BookInfo\BookInfo.csproj", "{FB2E437F-5127-48FD-9957-1AC1F977ADBA}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookInfo.Tests", "BookInfo.Tests\BookInfo.Tests.csproj", "{CB1EF592-9D46-4BAA-903C-80B0706193E0}"
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "BookInfo.Tests", "BookInfo.Tests\BookInfo.Tests.xproj", "{CB1EF592-9D46-4BAA-903C-80B0706193E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,8 +37,5 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{FB2E437F-5127-48FD-9957-1AC1F977ADBA} = {790E6537-C9B4-411F-9018-0234BEC6E05A}
 		{CB1EF592-9D46-4BAA-903C-80B0706193E0} = {29CBAB16-D91C-4C7E-AEE5-84039B77177E}
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {DA48B0FB-F95E-4397-8CE1-1D454CA6976E}
 	EndGlobalSection
 EndGlobal
