@@ -2978,16 +2978,6 @@
         "build": {
           "build/netcoreapp1.0/xunit.runner.visualstudio.props": {}
         }
-      },
-      "BookInfo/1.0.0": {
-        "type": "project",
-        "framework": "Unsupported,Version=v0.0",
-        "compile": {
-          "bin/placeholder/BookInfo.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/BookInfo.dll": {}
-        }
       }
     }
   },
@@ -8727,16 +8717,10 @@
         "xunit.runner.visualstudio.2.3.1.nupkg.sha512",
         "xunit.runner.visualstudio.nuspec"
       ]
-    },
-    "BookInfo/1.0.0": {
-      "type": "project",
-      "path": "../src/BookInfo/BookInfo.csproj",
-      "msbuildProject": "../src/BookInfo/BookInfo.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v1.0": [
-      "BookInfo >= 1.0.0",
       "Microsoft.NET.Test.Sdk >= 15.5.0",
       "Microsoft.NETCore.App >= 1.0.4",
       "xunit >= 2.3.1",
@@ -8767,11 +8751,7 @@
       },
       "frameworks": {
         "netcoreapp1.0": {
-          "projectReferences": {
-            "/Volumes/DataCard/Repos/CS296N-BookInfo-Core/src/BookInfo/BookInfo.csproj": {
-              "projectPath": "/Volumes/DataCard/Repos/CS296N-BookInfo-Core/src/BookInfo/BookInfo.csproj"
-            }
-          }
+          "projectReferences": {}
         }
       },
       "warningProperties": {
@@ -8808,16 +8788,5 @@
         ]
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1201",
-      "level": "Error",
-      "message": "Project BookInfo is not compatible with netcoreapp1.0 (.NETCoreApp,Version=v1.0). Project BookInfo supports: netcoreapp2.0 (.NETCoreApp,Version=v2.0)",
-      "libraryId": "BookInfo",
-      "targetGraphs": [
-        ".NETCoreApp,Version=v1.0"
-      ]
-    }
-  ]
+  }
 }
