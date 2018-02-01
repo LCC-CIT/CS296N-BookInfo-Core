@@ -16,6 +16,7 @@ namespace BookInfo
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+                .UseDefaultServiceProvider(options => options.ValidateScopes = false)
                 .Build();
 
             host.Run();

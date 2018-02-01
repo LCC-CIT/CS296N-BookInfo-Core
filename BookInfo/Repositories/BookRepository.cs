@@ -8,6 +8,14 @@ namespace BookInfo.Repositories
 {
     public class BookRepository : IBookRepository
     {
+        private ApplicationDbContext context;
+ 
+        public BookRepository(ApplicationDbContext ctx)
+        {
+            context = ctx;
+        }
+
+        /*
         List<Book> books = new List<Book>();
         public BookRepository()
         {
@@ -23,27 +31,36 @@ namespace BookInfo.Repositories
             book.Authors.Add(new Author { Name = "Samuel Shellabarger" });
             books.Add(book);
         }
+        */
 
         public List<Book> GetAllBooks()
         {
-            return books;
-        }
+            return context.Books.ToList<Book>();
+    }
 
         public Book GetBookByTitle(string title)
         {
-            return books.First(b => b.Title == title);
+            return context.Books.First(b => b.Title == title);
         }
 
         public List<Book> GetBooksByAuthor(Author author)
         {
-            return (from b in books
-                   where b.Authors.Contains(author)
+            return (from b in context.Books
+                    where b.Authors.Contains(author)
                    select b).ToList();
         }
 
         public List<Author> GetAuthorsByBook(Book book)
         {
-            return book.Authors;
+            throw new NotImplementedException();
         }
+
+        // TODO: implement this method
+        /*
+        public List<Author> GetAuthorsByBook(Book book)
+        {
+            return context.Books.Authors;
+        }
+        */
     }
 }
