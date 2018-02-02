@@ -24,12 +24,12 @@ namespace BookInfo
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
-            services.AddTransient<IAuthorRepository, AuthorRepository>();
-            services.AddTransient<IBookRepository, BookRepository>();
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer(
                     Configuration["Data:BookInfo:ConnectionString"]));
-        }
+            services.AddTransient<IAuthorRepository, AuthorRepository>();
+            services.AddTransient<IBookRepository, BookRepository>();
+       }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -41,6 +41,7 @@ namespace BookInfo
                 app.UseDeveloperExceptionPage();
             }
             app.UseMvcWithDefaultRoute();
+            SeedData.PopulateDb(app);
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using BookInfo.Models;
 
 namespace BookInfo.Repositories
@@ -36,7 +35,7 @@ namespace BookInfo.Repositories
         public List<Book> GetAllBooks()
         {
             return context.Books.ToList<Book>();
-    }
+        }
 
         public Book GetBookByTitle(string title)
         {
