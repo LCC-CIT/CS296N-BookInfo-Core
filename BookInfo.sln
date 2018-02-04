@@ -1,37 +1,16 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-<<<<<<< HEAD
 VisualStudioVersion = 15.0.27130.2024
-=======
-VisualStudioVersion = 15.0.27130.2020
->>>>>>> master
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{58F868C1-BA7C-4039-A9DF-EA1943226D47}"
 	ProjectSection(SolutionItems) = preProject
-<<<<<<< HEAD
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookInfo.Tests", "BookInfo.Tests\BookInfo.Tests.csproj", "{CB1EF592-9D46-4BAA-903C-80B0706193E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookInfo", "BookInfo\BookInfo.csproj", "{D3205AF6-623D-4F18-A613-8501D77A2F44}"
-=======
-		docs\EfCore.md = docs\EfCore.md
-		README.md = README.md
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{29CBAB16-D91C-4C7E-AEE5-84039B77177E}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docs", "docs", "{9A28FE30-6B1D-4455-922F-783BC42A8D97}"
-	ProjectSection(SolutionItems) = preProject
-		docs\EfCore.md = docs\EfCore.md
-	EndProjectSection
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookInfo.Tests", "test\BookInfo.Tests\BookInfo.Tests.csproj", "{CB1EF592-9D46-4BAA-903C-80B0706193E0}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookInfo.Web", "src\BookInfo.Web\BookInfo.Web.csproj", "{7D76B6CE-42F3-4EBE-9B6C-8158CEAADC16}"
->>>>>>> master
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,35 +22,19 @@ Global
 		{CB1EF592-9D46-4BAA-903C-80B0706193E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB1EF592-9D46-4BAA-903C-80B0706193E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB1EF592-9D46-4BAA-903C-80B0706193E0}.Release|Any CPU.Build.0 = Release|Any CPU
-<<<<<<< HEAD
 		{D3205AF6-623D-4F18-A613-8501D77A2F44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D3205AF6-623D-4F18-A613-8501D77A2F44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3205AF6-623D-4F18-A613-8501D77A2F44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3205AF6-623D-4F18-A613-8501D77A2F44}.Release|Any CPU.Build.0 = Release|Any CPU
-=======
-		{7D76B6CE-42F3-4EBE-9B6C-8158CEAADC16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7D76B6CE-42F3-4EBE-9B6C-8158CEAADC16}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7D76B6CE-42F3-4EBE-9B6C-8158CEAADC16}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7D76B6CE-42F3-4EBE-9B6C-8158CEAADC16}.Release|Any CPU.Build.0 = Release|Any CPU
->>>>>>> master
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-<<<<<<< HEAD
 		{CB1EF592-9D46-4BAA-903C-80B0706193E0} = {58F868C1-BA7C-4039-A9DF-EA1943226D47}
 		{D3205AF6-623D-4F18-A613-8501D77A2F44} = {58F868C1-BA7C-4039-A9DF-EA1943226D47}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {DA48B0FB-F95E-4397-8CE1-1D454CA6976E}
-=======
-		{9A28FE30-6B1D-4455-922F-783BC42A8D97} = {58F868C1-BA7C-4039-A9DF-EA1943226D47}
-		{CB1EF592-9D46-4BAA-903C-80B0706193E0} = {29CBAB16-D91C-4C7E-AEE5-84039B77177E}
-		{7D76B6CE-42F3-4EBE-9B6C-8158CEAADC16} = {790E6537-C9B4-411F-9018-0234BEC6E05A}
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {B0372978-670D-42CF-A3F1-2E07FD4C91F2}
->>>>>>> master
 	EndGlobalSection
 EndGlobal
